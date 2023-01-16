@@ -20,36 +20,36 @@
 
 
 // kiểm tra xem có dữ liệu không
-if (isset ( $_POST ['firstName'] )) {
-    $firstName = $_POST ['firstName'];
-}
-if (isset ( $_POST ['email'] )) {
-    $email = $_POST ['email'];
-}
-if (isset ( $_POST ['phoneNumber'] )) {
-    $phoneNumber = $_POST ['phoneNumber'];
-}
-if (isset ( $_POST ['address1'] )) {
-    $address1 = $_POST ['address1'];
-}
-if (isset ( $_POST ['address2'] )) {
-    $address2 = $_POST ['address1'];
-}
-if (isset ( $_POST ['address1'] )) {
-    $address1 = $_POST ['address1'];
-}
-if (isset ( $_POST ['address1'] )) {
-    $address1 = $_POST ['address1'];
-}
-if (isset ( $_POST ['address1'] )) {
-    $address1 = $_POST ['address1'];
-}
-if (isset ( $_POST ['address1'] )) {
-    $address1 = $_POST ['address1'];
-}
-if (isset ( $_POST ['address1'] )) {
-    $address1 = $_POST ['address1'];
-}
+//if (isset ( $_POST ['firstName'] )) {
+//    $firstName = $_POST ['firstName'];
+//}
+//if (isset ( $_POST ['email'] )) {
+//    $email = $_POST ['email'];
+//}
+//if (isset ( $_POST ['phoneNumber'] )) {
+//    $phoneNumber = $_POST ['phoneNumber'];
+//}
+//if (isset ( $_POST ['address1'] )) {
+//    $address1 = $_POST ['address1'];
+//}
+//if (isset ( $_POST ['address2'] )) {
+//    $address2 = $_POST ['address1'];
+//}
+//if (isset ( $_POST ['address1'] )) {
+//    $address1 = $_POST ['address1'];
+//}
+//if (isset ( $_POST ['address1'] )) {
+//    $address1 = $_POST ['address1'];
+//}
+//if (isset ( $_POST ['address1'] )) {
+//    $address1 = $_POST ['address1'];
+//}
+//if (isset ( $_POST ['address1'] )) {
+//    $address1 = $_POST ['address1'];
+//}
+//if (isset ( $_POST ['address1'] )) {
+//    $address1 = $_POST ['address1'];
+//}
 
 
 
