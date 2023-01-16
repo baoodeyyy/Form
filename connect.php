@@ -34,7 +34,7 @@ $conn = new mysqli('localhost', 'root', '', 'form_reg');
 if ($conn -> connect_error){
     die('Connection Failed :' .$conn->connect_error);
 }else {
-    $stmt = $conn->prepare("inset into reg(firstName,lastName,email,phoneNumber,address1,address2,city,state,postal,checkInDate,checkOutDate,bookAddress1,bookAddress2,bookCity,bookState,bookPostal,roomType,smoking,ofGuest,note) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+    $stmt = $conn->prepare("insert into reg(firstName,lastName,email,phoneNumber,address1,address2,city,state,postal,checkInDate,checkOutDate,bookAddress1,bookAddress2,bookCity,bookState,bookPostal,roomType,smoking,ofGuest,note) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
     $stmt->bind_param("sssissssissssssisbbs",$firstName,$lastName,$email,$phoneNumber,$address1,$address2,$city,$state,$postal,$checkInDate,$checkOutDate,$bookAddress1,$bookAddress2,$bookCity,$bookState,$bookPostal,$roomType,$smoking,$ofGuest,$note);
     $stmt->execute();
     echo "reg successfully";
