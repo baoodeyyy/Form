@@ -202,12 +202,16 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
                 <input type="email" class="form-control"  placeholder=" " name="email">
                 <small id="Email" class="form-text text-muted">Example@Example.com</small>
                 <?php
-                if(!empty($errors['email']['required'])){
-                    echo '<span style="color: red">'.$errors['email']['required'].'</span>';
-                }else if(!empty($errors['email']['valid'])){
-                    echo '<span style="color: red">'.$success['email']['valid'].'</span>';
-                }else{
-                    echo '<span style="color: red">'.$errors['email']['invalid'].'</span>';
+                if (isset($errors)){
+                    if(!empty($errors['email']['required'])){
+                        echo '<span style="color: red">'.$errors['email']['required'].'</span>';
+                    }else {
+                        if (!empty($errors['email']['valid'])) {
+                            echo '<span style="color: red">'. $success['email']['valid'] . '</span>';
+                        } else {
+                            echo '<span style="color: red">'.$errors['email']['invalid'].'</span>';
+                        }
+                    }
                 }
                 ?>
             </div>
