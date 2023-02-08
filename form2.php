@@ -150,15 +150,14 @@ if (empty($_POST['bookCity'])){
     $bookCity = $_POST['bookCity'];
 }
 
-// validate state/province booking
-//if (empty($_POST['bookState'])){
-//    $errors['bookState'] = "bookState không được để trống";
-//}else{
-//    $bookState = $_POST['bookState'];
-//    if(!preg_match('/^[0-9]{5}+$/', $bookState)) {
-//        echo "postal không hợp lệ";
-//    }
-//}
+ //validate state/province booking
+if (empty($_POST['bookState'])){
+    $errors['bookState'] = " bạn cần nhập thông tin này";
+}else{
+    $bookState = $_POST['bookState'];
+}
+
+//validate postal
 if (isset($_POST['bookPostal'])){
     $pos = $_POST['bookPostal'];
     $reg = '/^[0-9]{5}+$/';
@@ -195,15 +194,20 @@ if (empty($_POST['ofGuest'])){
 }else{
     $ofGuest = $_POST['ofGuest'];
 }
-
-if (empty($_POST['note'])){
-    $errors['note'] = "vui lòng nhập số người";
-}else{
+if (isset($_POST['note'])){
     $note = $_POST['note'];
 }
 
-//
+if (empty($errors)){
+    echo "validate thành công";
+}else{
+    echo "validate không thành công";
+}
+ var_dump($errors);
+
 ?>
+
+
 <div class="container">
     <header>
         <div class="p-5 text-center bg-secondary">
