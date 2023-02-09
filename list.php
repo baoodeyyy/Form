@@ -31,17 +31,16 @@
             echo '<br>';
             echo '<br>';
             echo '<br>';
-            echo '<h4 style="color: white">FirstName: '.$_SESSION['list(9)'].'</h4>';
-            echo '<h4 style="color: white">LastName: '.$_SESSION['list(10)'].'</h4>';
-            echo '<h4 style="color: white">Email: '.$_SESSION['list(11)'].'</h4>';
-            echo '<h4 style="color: white">PhoneNumber: '.$_SESSION['list(12)'].'</h4>';
-            echo '<h4 style="color: white">Address: '.$_SESSION['list(13)'].' '.$_SESSION['list(5)'].'</h4>';
-            echo '<h4 style="color: white">City: '.$_SESSION['list(14)'].'</h4>';
-            echo '<h4 style="color: white">State/Province: '.$_SESSION['list(15)'].'</h4>';
-            echo '<h4 style="color: white">Postal / Zip Code: '.$_SESSION['list(16)'].'</h4>';
-            echo '<h4 style="color: white">RoomType: '.$_SESSION['list(17)'].'</h4>';
-            echo '<h4 style="color: white">Smoking: '.$_SESSION['list(18)'].'</h4>';
-            echo '<h4 style="color: white">ofGuest: '.$_SESSION['list(19)'].'</h4>';
+            echo '<h4 style="color: white">Check-in Date: '.$_SESSION['list(9)'].'</h4>';
+            echo '<h4 style="color: white">Check-out Date: '.$_SESSION['list(10)'].'</h4>';
+            echo '<h4 style="color: white">Address: '.$_SESSION['list(11)'].' '.$_SESSION['list(12)'].'</h4>';
+            echo '<h4 style="color: white">City: '.$_SESSION['list(13)'].'</h4>';
+            echo '<h4 style="color: white">State/Province: '.$_SESSION['list(14)'].'</h4>';
+            echo '<h4 style="color: white">Postal / Zip Code: '.$_SESSION['list(15)'].'</h4>';
+            echo '<h4 style="color: white">RoomType: '.$_SESSION['list(16)'].'</h4>';
+            echo '<h4 style="color: white">Smoking: '.$_SESSION['list(17)'].'</h4>';
+            echo '<h4 style="color: white">ofGuest: '.$_SESSION['list(18)'].'</h4>';
+            echo '<h4 style="color: white">Note: '.$_SESSION['list(19)'].'</h4>';
 
 
 
