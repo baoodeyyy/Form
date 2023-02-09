@@ -102,11 +102,12 @@ if (isset($_POST['postal'])){
     if (empty($_POST['postal'])){
         $errors['postal'] = "postal không được để trống";
     }else{
-        //$postal = $_POST['postal'];
         if($found1) {
             $errors =  "postal không hợp lệ";
         }else{
             $postal = $_POST['postal'];
+
+           // var_dump($postal);
         }
     }
 }
@@ -118,6 +119,7 @@ if (empty($_POST['checkInDate'])){
     $errors['checkInDate'] = "bạn cần nhập ngày tháng";
 }else{
     $checkInDate = $_POST['checkInDate'];
+    //var_dump($checkInDate);die;
 }
 
 
@@ -126,6 +128,7 @@ if (empty($_POST['checkOutDate'])){
     $errors['checkOutDate'] = "bạn cần nhập ngày tháng";
 }else{
     $checkOutDate = $_POST['checkOutDate'];
+    //var_dump($checkOutDate);die;
 }
 
 
@@ -175,17 +178,23 @@ if (isset($_POST['bookPostal'])){
 }
 
 // validate roomtype
-if (empty($_POST['roomType'])){
-    $errors['roomType'] = "mời bạn chọn loại phòng";
-}else{
-    $roomType = $_POST['roomType'];
+if (isset($_POST['roomType'])){
+   // var_dump($_POST['roomType']);die;
+    if(isset($_REQUEST['roomType']) && $_REQUEST['roomType'] == '0') {
+        $errors['roomType'] = "Bạn vui lòng chọn loại phòng";
+    }else{
+        $roomType = $_POST['roomType'];
+    }
 }
 
 // validate smoking
-if (empty($_POST['smoking'])){
-    $errors['smoking'] = "bạn có hút thuốc không???";
-}else{
-    $smoking = $_POST['smoking'];
+if (isset($_POST['smoke'])){
+    if(isset($_REQUEST['smoke']) && $_REQUEST['smoke'] == '0') {
+        $errors['smoke'] = "bạn có hút thuốc không?";
+    }else{
+        $smoke = $_POST['smoke'];
+        //var_dump($smoke);die;
+    }
 }
 
 // validate số người
@@ -204,7 +213,6 @@ if (empty($errors)){
     echo "validate không thành công";
 }
  var_dump($errors);
-
 ?>
 
 
@@ -387,10 +395,10 @@ if (empty($errors)){
             <div class="form-group col-sm">
                 <label for="Name">Room Type</label>
                 <select class="form-select form-control" name="roomType">
-                    <option selected>Please select</option>
-                    <option name="roomType" value="to">To</option>
-                    <option name="roomType" value="nho">Nhỏ</option>
-                    <option name="roomType" value="vua">Vừa</option>
+                    <option selected value="0">Please select</option>
+                    <option name="roomType" value="1">To</option>
+                    <option name="roomType" value="2">Nhỏ</option>
+                    <option name="roomType" value="3">Vừa</option>
                 </select>
                 <?php
                 if (isset($errors['roomType'])) {
@@ -401,9 +409,9 @@ if (empty($errors)){
             <div class="form-group col-sm">
                 <label for="Name">Smoking</label>
                 <select class="form-select form-control" name="smoke">
-                    <option selected>Please select</option>
-                    <option name="smoking" value="y">Yes</option>
-                    <option name="smoking" value="n">No</option>
+                    <option selected value="0">Please select</option>
+                    <option name="smoking" value="1">Yes</option>
+                    <option name="smoking" value="2">No</option>
                 </select>
                 <?php
                 if (isset($errors['smoke'])) {
@@ -416,6 +424,11 @@ if (empty($errors)){
             <div class="form-group col-sm">
                 <label for="Name">#of Guests</label>
                 <input type="text" class="form-control"  placeholder="e.g.,4" name="ofGuest" >
+                <?php
+                if (isset($errors['ofGuest'])) {
+                    echo '<span style="color: red">' . $errors['ofGuest'] . '</span>';
+                }
+                ?>
             </div>
             <div class="form-group col-sm" >
                 <!--                    <input type="text" class="form-control"   placeholder=" " value="--><!--">-->
