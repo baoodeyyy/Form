@@ -23,12 +23,17 @@ require_once 'function.php';
 $errors = [];
 
 // validate fisrtName
+session_start();
+$_SESSION['list'] = array(
+
+);
 if (empty($_POST['firstName'])){
     $errors['firstName'] = "Tên không được để trống";
 }else if (strlen($_POST['firstName'])<"2"){
         $errors['firstName'] = "Tên phải lớn hơn 2 ký tự";
 }else{
         $firstName = $_POST['firstName'];
+        $_SESSION['list(0)'] = $_POST['firstName'];
 }
 
 // validate lastName
@@ -38,22 +43,22 @@ if (empty($_POST['lastName'])){
     $errors['lastName'] = "Tên phải lớn hơn 2 ký tự";
 }else{
     $lastName = $_POST['lastName'];
+    $_SESSION['list(1)'] = $_POST['lastName'];
 }
-
+//var_dump($_SESSION['list']);die;
 // validate email
-if (empty($_POST['email'])){
-    $errors['email'] = "email không được để trống";
-}else{
-    $email = $_POST['email'];
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors = "email không đúng định dạng";
+if (isset($_POST['email'])) {
+    if (empty($_POST['email'])) {
+        $errors['email'] = "email không được để trống";
+    }else{
+        $email = $_POST['email'];
+        $_SESSION['list(2)'] = $_POST['email'];
     }
 }
-
 // validate phonenumber
 if (isset($_POST['phoneNumber'])){
     $phone = $_POST['phoneNumber'];
-    $regex = '/\(?([0-9]{3})\)?([]?)([0-9]{3})\2([0-9]{4})/';
+    $regex = '/[0-9]{10}/';
     $found = preg_match($regex, $phone);
     if (empty($_POST['phoneNumber'])){
         $errors['phoneNumber'] = "phoneNumber không được để trống";
@@ -62,6 +67,7 @@ if (isset($_POST['phoneNumber'])){
             $errors =  "phoneNumber không hợp lệ";
         }else{
             $phoneNumber = $_POST['phoneNumber'];
+            $_SESSION['list(3)'] = $_POST['phoneNumber'];
         }
     }
 }
@@ -71,6 +77,7 @@ if (empty($_POST['address1'])){
     $errors['address1'] = "Address không được để trống";
 }else{
     $address1 = $_POST['address1'];
+    $_SESSION['list(4)'] = $_POST['address1'];
 }
 
 // validate address 2
@@ -78,6 +85,7 @@ if (empty($_POST['address2'])){
     $errors['address2'] = "Address không được để trống";
 }else{
     $address2 = $_POST['address2'];
+    $_SESSION['list(5)'] = $_POST['address2'];
 }
 
 // validate city
@@ -85,6 +93,7 @@ if (empty($_POST['city'])){
     $errors['city'] = "city không được để trống";
 }else{
     $city = $_POST['city'];
+    $_SESSION['list(6)'] = $_POST['city'];
 }
 
 // validate state province
@@ -92,22 +101,25 @@ if (empty($_POST['state'])){
     $errors['state'] = "state/province không được để trống";
 }else{
     $state = $_POST['state'];
+    $_SESSION['list(7)'] = $_POST['state'];
 }
 
 // validate postal/zipcode
 if (isset($_POST['postal'])){
     $pos = $_POST['postal'];
-    $reg = '/^[0-9]{5}+$/';
+    $reg = '/[0-9]{5}/';
     $found1 = preg_match($reg, $pos);
     if (empty($_POST['postal'])){
         $errors['postal'] = "postal không được để trống";
     }else{
-        if($found1) {
+        if(!$found1) {
             $errors =  "postal không hợp lệ";
         }else{
             $postal = $_POST['postal'];
+            $_SESSION['list(8)'] = $_POST['postal'];
 
-           // var_dump($postal);
+            //var_dump($postal);
+
         }
     }
 }
@@ -115,28 +127,38 @@ if (isset($_POST['postal'])){
 
 
 // validate dateIn
-if (empty($_POST['checkInDate'])){
-    $errors['checkInDate'] = "bạn cần nhập ngày tháng";
-}else{
-    $checkInDate = $_POST['checkInDate'];
-    //var_dump($checkInDate);die;
+if (isset($_POST['checkInDate'])){
+    if (empty($_POST['checkInDate'])){
+        $errors['checkInDate'] = "bạn cần nhập ngày tháng";
+    }else{
+        $checkInDate = $_POST['checkInDate'];
+        //var_dump($checkInDate);die;
+        $_SESSION['list(9)'] = $_POST['checkInDate'];
+    }
 }
 
 
 // validate dateOut
-if (empty($_POST['checkOutDate'])){
-    $errors['checkOutDate'] = "bạn cần nhập ngày tháng";
-}else{
-    $checkOutDate = $_POST['checkOutDate'];
-    //var_dump($checkOutDate);die;
+if (isset($_POST['checkOutDate'])){
+    if (empty($_POST['checkOutDate'])){
+        $errors['checkOutDate'] = "bạn cần nhập ngày tháng";
+    }else{
+        $checkOutDate = $_POST['checkOutDate'];
+        $_SESSION['list(10)'] = $_POST['checkOutDate'];
+        //var_dump($checkOutDate);die;
+    }
 }
 
 
+
 // validate pickup location
-if (empty($_POST['bookAddress1'])){
-    $errors['bookAddress1'] = "địa chỉ không được để trống";
-}else{
-    $bookAddress1 = $_POST['bookAddress1'];
+if (isset($_POST['bookAddress1'])){
+    if (empty($_POST['bookAddress1'])){
+        $errors['bookAddress1'] = "địa chỉ không được để trống";
+    }else{
+        $bookAddress1 = $_POST['bookAddress1'];
+        $_SESSION['list(11)'] = $_POST['bookAddress1'];
+    }
 }
 
 // validate pickup location2
@@ -144,6 +166,7 @@ if (empty($_POST['bookAddress2'])){
     $errors['bookAddress2'] = "địa chỉ không được để trống";
 }else{
     $bookAddress2 = $_POST['bookAddress2'];
+    $_SESSION['list(12)'] = $_POST['bookAddress2'];
 }
 
 // validate city booking
@@ -151,6 +174,7 @@ if (empty($_POST['bookCity'])){
     $errors['bookCity'] = "city không được để trống";
 }else{
     $bookCity = $_POST['bookCity'];
+    $_SESSION['list(13)'] = $_POST['bookCity'];
 }
 
  //validate state/province booking
@@ -158,22 +182,25 @@ if (empty($_POST['bookState'])){
     $errors['bookState'] = " bạn cần nhập thông tin này";
 }else{
     $bookState = $_POST['bookState'];
+    $_SESSION['list(14)'] = $_POST['bookState'];
 }
 
 //validate postal
 if (isset($_POST['bookPostal'])){
-    $pos = $_POST['bookPostal'];
-    $reg = '/^[0-9]{5}+$/';
-    $found1 = preg_match($reg, $pos);
+    $pos1 = $_POST['bookPostal'];
+    $reg1 = '/[0-9]{5}/';
+    $found1 = preg_match($reg1, $pos1);
     if (empty($_POST['bookPostal'])){
         $errors['bookPostal'] = "postal không được để trống";
     }else{
         //$postal = $_POST['postal'];
-        if($found1) {
+        if(!$found1) {
             $errors =  "postal không hợp lệ";
         }else{
-            $bookPostal = $_POST['postal'];
+            $bookPostal = $_POST['bookPostal'];
+            $_SESSION['list(15)'] = $_POST['bookPostal'];
         }
+        //var_dump($bookPostal);
     }
 }
 
@@ -184,6 +211,7 @@ if (isset($_POST['roomType'])){
         $errors['roomType'] = "Bạn vui lòng chọn loại phòng";
     }else{
         $roomType = $_POST['roomType'];
+        $_SESSION['list(16)'] = $_POST['roomType'];
     }
 }
 
@@ -193,6 +221,7 @@ if (isset($_POST['smoke'])){
         $errors['smoke'] = "bạn có hút thuốc không?";
     }else{
         $smoke = $_POST['smoke'];
+        $_SESSION['list(17)'] = $_POST['smoke'];
         //var_dump($smoke);die;
     }
 }
@@ -202,9 +231,11 @@ if (empty($_POST['ofGuest'])){
     $errors['ofGuest'] = "vui lòng nhập số người";
 }else{
     $ofGuest = $_POST['ofGuest'];
+    $_SESSION['list(18)'] = $_POST['ofGuest'];
 }
 if (isset($_POST['note'])){
     $note = $_POST['note'];
+    $_SESSION['list(19)'] = $_POST['note'];
 }
 
 if (empty($errors)){
@@ -213,6 +244,15 @@ if (empty($errors)){
     echo "validate không thành công";
 }
  var_dump($errors);
+
+if (empty($errors)){
+    redirect('list.php?message=1');
+    exit;
+}else{
+
+}
+
+
 ?>
 
 
@@ -449,7 +489,8 @@ if (empty($errors)){
                 Check-in time shall be at 2:00PM and checkout time shall be at 12:00NN.
             </h4>
             <div class="p-5 text-center">
-                <button class="btn btn-secondary" role="button" name="btnreg">Register</button>
+                <button class="btn btn-secondary" role="button" name="btnreg" >
+                    <link rel="stylesheet" href="list.php">Register</button>
             </div>
         </div>
 
